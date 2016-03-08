@@ -1,0 +1,22 @@
+﻿@using CourseRegistration.Models;
+@using (Html.BeginForm("RegisterCompanyHR", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Partial("RegisterHR", new CompanyHR())
+            </div>
+            <div class="col-md-10">
+                @Html.Partial("RegisterCompany", new Company())
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Register" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

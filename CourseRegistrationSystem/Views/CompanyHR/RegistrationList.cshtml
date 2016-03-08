@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CourseRegistration.Models.Registration>
+
+@{
+    ViewBag.Title = "RegistrationList";
+}
+
+<h2>RegistrationList</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseClass.Course.CourseTitle)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.CourseClass.ClassId)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.CourseClass.StartDate)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Participant.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DietaryRequirement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseClass.Course.CourseTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseClass.ClassId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseClass.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Participant.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DietaryRequirement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "RegistrationDetails", new { id=item.RegistrationId })
+            @Html.ActionLink("Delete", "RegistrationDelete", new { id = item.RegistrationId })
+        </td>
+    </tr>
+}
+
+</table>

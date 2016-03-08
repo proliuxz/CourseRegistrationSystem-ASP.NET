@@ -1,0 +1,36 @@
+﻿@model CourseRegistration.Models.Category
+
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home","Index","Home")</li>
+    <li>@Html.ActionLink("Course","Index","Course")</li>
+    <li>@Html.DisplayFor(model => Model.CategoryName)</li>
+</ul>
+
+<h3 style="text-transform:uppercase;">@Model.CategoryName</h3>
+
+<p>
+    @{
+        if (Model.CategoryDescription.IsEmpty())
+        {
+            @("The content is coming soon!");
+        }
+        else
+        {
+            Html.DisplayFor(model => Model.CategoryDescription);
+        }
+    }
+</p>
+<hr />
+
+<h3>Available Courses <small>@ViewBag.Courses.Count courses</small></h3>
+
+<ul class="list-group">
+    @foreach (CourseRegistration.Models.Course item in ViewBag.Courses)
+    {
+        if (item.enabled)
+        {
+            <li>@Html.ActionLink(item.CourseTitle, "Details", "Course", new { code = item.CourseCode }, new { @class = "list-group-item" })</li>
+        }
+    }
+</ul>
+

@@ -1,0 +1,383 @@
+﻿
+@using CourseRegistration.Models
+
+@{
+    ViewBag.Title = "RegisterClassForHR";
+}
+
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Class", "Index", "Class")</li>
+    <li>@Html.ActionLink((String)ViewBag.CourseClass.ClassId, "Details", "Class", new { id = ViewBag.CourseClass.ClassId }, new { })</li>
+    <li>Registration</li>
+</ul>
+
+<h2>@Html.Encode(ViewBag.CourseClass.ClassId) Class Registration</h2>
+
+<h4>@Html.Encode(ViewBag.CourseClass.Course.CourseTitle)</h4>
+
+<p>
+    @Html.Encode(ViewBag.CourseClass.Course.CourseDescription)
+</p>
+
+<p>Fee: @Html.Encode(ViewBag.CourseClass.Course.Fee)</p>
+<p>Duration: @Html.Encode(ViewBag.CourseClass.Course.NumberOfDays) days</p>
+<p>Start Date: @Html.Encode(ViewBag.CourseClass.StartDate.ToString("yyyy-MM-dd")) & End Date: @Html.Encode(ViewBag.CourseClass.EndDate.ToString("yyyy-MM-dd"))</p>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+            <h3 class="panel-title">Step1: Participant Details</h3>
+        </div>
+        <div class="panel-collapse collapse in" id="collapse1">
+            <div class="panel-body">
+                <div>
+                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1" id="addParticipant">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Participant
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal2" data-whatever="">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add from Employee List
+                    </button>
+                    <hr />
+                </div>
+                <div class="row" id="allParticipants">
+                    <div class="col-lg-6">
+                        <div id="newParticipants">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div id ="oldParticipants">
+
+                        </div>
+                    </div>
+                </div>         
+            </div>
+        </div>
+    </div>
+
+@using (Html.BeginForm("RegisterClassForHR", "Class", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("ClassId",(String)ViewBag.CourseClass.ClassId)
+    @Html.Hidden("NewParticipantList")
+    @Html.Hidden("OldParticipantList")
+    
+    <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+            <h3 class="panel-title">Step2: Bill Details</h3>
+        </div>
+        <div class="collapse in" id="collapse2">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <h4>Billing Address</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Address", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.Editor("Address", new { htmlAttributes = new { @class = "form-control", @value = ViewBag.Address } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("PersonName", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.Editor("PersonName", new { htmlAttributes = new { @class = "form-control", @value = ViewBag.PersonName } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Country", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.Editor("Country", new { htmlAttributes = new { @class = "form-control", @value = ViewBag.Country } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("PostalCode", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.Editor("PostalCode", new { htmlAttributes = new { @class = "form-control" ,@value=ViewBag.PostalCode } })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <nav>
+        <div class="pager">
+            @*<li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Previous</a></li>*@
+            @*<li class="next"><a href="#">Register</a></li>*@
+            <input class="btn btn-primary" style="float:right;" type="submit" value="Register Now" />
+        </div>
+    </nav>
+}
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModal1Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="modal1Content">
+            @Html.Partial("CreateParticipant")
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModal2Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Employee List</h4>
+            </div>
+            <div class="modal-body" id="modal2Body">
+                @foreach (var item in ViewBag.Participants)
+                {
+                    <div class="checkbox">
+                        <label>
+                            @item.FullName <input type="checkbox" value="@item.FullName" name="@item.IdNumber" id="@item.IdNumber">
+                        </label>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="empBtn">Comfirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModal1Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="modal3Content">
+            
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<script>
+    var curParticipants;
+    var employeeList;
+
+    $(document).ready(function () {
+        curParticipants = [];
+        employeeList = [];
+        var inputs = document.getElementById('modal2Body').getElementsByTagName('input');
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].type == 'checkbox') {
+                employeeList.push({ id: inputs[i].id, name: inputs[i].value });
+            }
+        }
+    });
+
+    //$('#addParticipant').click(function (event) {
+    //    $.get('CreateParticipant', function (response) {
+    //        $('#modal1Content').html(response);
+    //        $('#myModal1').modal('show');
+    //    });
+    //})
+
+    //new participant modal
+    $('#myModal1').on('show.bs.modal', function (event) {
+
+    })
+
+    //employeeList modal
+    $('#myModal2').on('show.bs.modal', function (event) {
+        //$.get('GetEmployeeList', function (response) {
+        //    $('#modal2Body').html(response);
+        //});
+
+        //var inputs = document.getElementById('participants').getElementsByTagName('input');
+        //if (inputs.length != 0) {
+        //    for (var i = 0; i < participants.length; i++) {
+        //        inputs[i].checked = participants[i].selected;
+        //    }
+        //}
+
+    })
+
+    function checkModal2Body() {
+        var inputs = document.getElementById('modal2Body').getElementsByTagName('input');
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].type == 'checkbox') {
+                inputs[i].checked = false;
+            }
+        }
+        var selected;
+        for (var j = 0; j < curParticipants.length; j++) {
+            selected = null;
+            selected = document.getElementById(curParticipants[j].id);
+            if (selected != null) {
+                selected.checked = true;
+            }
+        }
+    }
+
+    $('#myModal2').on('hidden.bs.modal', function (event) {
+        checkModal2Body();
+    })
+
+    $('#empBtn').click(function (event) {
+        var list = [];
+        var inputs = document.getElementById('modal2Body').getElementsByTagName('input');
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].type == 'checkbox') {
+                if (checkParticipants(inputs[i].id, inputs[i].checked)) {
+                    list.push({ id: inputs[i].id, name: inputs[i].value });
+                }
+            }
+        }
+        console.log(list);
+        var str = JSON.stringify(list);
+        console.log(str);
+        $.ajax({
+            url: '@Url.Action("AddParticipants")',
+            type: 'POST',
+            datatype: "json",
+            traditional: true,
+            data: {
+                jsonstring: JSON.stringify(list)
+            },
+            success: function () {
+                curParticipants = list;
+                for(var j=0;j<curParticipants.length;j++){
+                    $('#oldParticipants').append('<button type="button" class="btn btn-primary btn-lg btn-block" onclick="editParticipant(this)" id="btn' + curParticipants[j].id + '">' + curParticipants[j].name + '</button>');
+                }
+                console.log(curParticipants);
+                $('#myModal2').modal('hide');
+            },
+            error: function (event, request, settings) {
+                alert("Add failed. Please try again.")
+            }
+            //,
+            //timeout: 20000
+        });
+        //$.post("AddParticipants", { jsonstring: str }, function () {
+
+        //}).done(function (data, status) {
+        //    curParticipants = [];
+        //    console.log(data + " " + status);
+        //    if (status == 'success') {
+        //        curParticipants = list;
+        //        for(var j=0;j<curParticipants.length;j++){
+        //            $('#oldParticipants').append('<button type="button" class="btn btn-primary btn-lg btn-block" onclick="editParticipant(this)" id="btn' + curParticipants[j].id + '">' + curParticipants[j].name + '</button>');
+        //        }
+        //        console.log(curParticipants);
+        //            $('#myModal2').modal('hide');
+        //    } else {
+        //        alert("Add failed. Please try again.")
+        //    }
+        //})
+    });
+
+    function checkParticipants(id,exist){
+        if(curParticipants.length != 0){
+            for(var i = 0; i<curParticipants.length;i++){
+                if (id == curParticipants[i].id) {
+                    if (!exist) {
+                        curParticipants.splice(i,1)
+                    }
+                    return false;
+                }
+            }
+        }
+        if (exist) {
+            return true;
+        }
+        return false;
+    }
+
+    function compare(array1, array2) {
+        return (array1.length == array2.length) && array1.every(function (element, index) {
+            return element == array2[index]});
+    }
+
+    function editParticipant(btn) {
+        console.log(btn);
+        var idNumber = btn.id.substring(3);
+        console.log(idNumber);
+        $.get("EditParticipant", {id:idNumber}, function (data, status) {
+            $('#modal3Content').html(data);
+
+        }).done(function () {
+            $('#myModal3').modal('show');
+        })
+    }
+
+    function createBegin() {
+        console.log("i am beginning");
+
+        //check if idnumber is existed in local
+        //var length = newParticipants.length;
+        //if (length != 0) {
+        //    for (var i = 0; i < length; i++) {
+
+        //    }
+        //}
+
+        //var jsonarray = [{ name: "test1" }, { name: "test2" }];
+        //console.log(jsonarray);
+
+        //var json = JSON.stringify(jsonarray);
+        //console.log(json);
+        //document.getElementById('ParticipantNew').setAttribute('value', json);
+        //var value = document.getElementById('ParticipantNew').getAttribute('value');
+        //if ( value !== null && value !== "") {
+        //    return true;
+        //} else {
+        //    alert("can not submit");
+        //    return false;
+        //}
+        //return true;
+    }
+
+    function createFailure(response) {
+        //network issue
+        alert("The participant is existed. Please choose from list.");
+    }
+
+    function createSuccess(jsonstring) {
+        console.log("i am successful");
+        var json = jQuery.parseJSON(jsonstring);
+        console.log(json);
+        console.log(json.id);
+        if (json!=null) {
+            //add new participant into NewParticipants div
+            $("#newParticipants").append('<button type="button" class="btn btn-primary btn-lg btn-block" onclick="editParticipant(this)" id="btn' + json.id + '">' + json.name + '</button>');
+            $('#myModal1').modal('hide');
+            $("#modal1Content").load('@Url.Action("CreateParticipant", "Class")');
+        } else {
+            $('#myModal1').modal('hide');
+            $("#modal1Content").load('@Url.Action("CreateParticipant", "Class")');
+            alert("The participant is existed. Please choose from list.");
+        }
+
+    }
+
+    //function changeParticipants() {
+    //    var checkedList = new Array();
+
+    //    var inputs = document.getElementById('modal2Body').getElementsByTagName('input');
+    //    for (var i = 0; i < inputs.length; i++) {
+    //        if (inputs[i].type == 'checkbox') {
+    //            if (inputs[i].checked) {
+    //                checkedList.push(inputs[i].value);
+    //            }
+    //        }
+    //    }
+
+    //    if (checkedList.length != 0 ) {
+    //        if (!compare(curParticipants,checkedList)) {
+    //            $.post('GetParticipantFromList', $.param({ array: checkedList }, true), function (response) {
+    //                console.log(response);
+    //                $('#participants').html(response);
+    //            }).done(function () {
+    //                curParticipants = checkedList;
+    //            })
+    //        }
+    //    } else {
+    //        curParticipants = checkedList;
+    //        $('#participants').html('<p class="text-muted">Please add one participant at least.</p>');
+    //    }
+    //}
+</script>

@@ -1,0 +1,29 @@
+﻿@model CourseRegistration.Models.Course
+
+@{
+    ViewBag.Title = "Details";
+}
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Course", "Index", "Course")</li>
+    <li>@Html.DisplayFor(model => Model.CourseTitle)</li>
+</ul>
+
+<h2>@Model.CourseTitle</h2>
+
+<div>
+    <p>@Model.CourseDescription</p>
+    <p><strong>@Html.DisplayNameFor(model => model.Fee): @Html.DisplayFor(model => model.Fee) | Duration: @Html.DisplayFor(model => model.NumberOfDays)</strong></p>
+
+    <hr />
+    <h2>Available Classes <small>@ViewBag.Classes.Count class</small></h2>
+    <ul>
+        @foreach (CourseRegistration.Models.CourseClass item in ViewBag.Classes)
+        {           
+            <li>@Html.ActionLink(item.ClassId, "Details", "Class", new { id = item.ClassId }, new { })</li>
+        }
+    </ul>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,312 @@
+﻿<WorkflowService mc:Ignorable="sap sap2010 sads" p1:TextExpression.Namespaces="{x:Reference __ReferenceID3}" p1:TextExpression.References="{x:Reference __ReferenceID4}" ConfigurationName="CourseConfirmationProcess" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="WorkflowService_1" Name="CourseConfirmationProcess"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:cs="clr-namespace:CourseRegistration.Service;assembly=CourseRegistration.Service"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:p="http://tempuri.org/"
+ xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:ssx="clr-namespace:System.ServiceModel.XamlIntegration;assembly=System.ServiceModel"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p1:Sequence DisplayName="CourseConfirmationProcess" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <p1:TextExpression.Namespaces>
+      <sco:Collection x:TypeArguments="x:String" x:Name="__ReferenceID3">
+        <x:String>System</x:String>
+        <x:String>System.Collections.Generic</x:String>
+        <x:String>System.Data</x:String>
+        <x:String>System.Linq</x:String>
+        <x:String>System.Text</x:String>
+        <x:String>CourseRegistration.Service</x:String>
+        <x:String>System.ServiceModel.Activities</x:String>
+      </sco:Collection>
+    </p1:TextExpression.Namespaces>
+    <p1:TextExpression.References>
+      <sco:Collection x:TypeArguments="p1:AssemblyReference" x:Name="__ReferenceID4">
+        <p1:AssemblyReference>EntityFramework</p1:AssemblyReference>
+        <p1:AssemblyReference>EntityFramework.SqlServer</p1:AssemblyReference>
+        <p1:AssemblyReference>Microsoft.AspNet.Identity.Core</p1:AssemblyReference>
+        <p1:AssemblyReference>Microsoft.AspNet.Identity.EntityFramework</p1:AssemblyReference>
+        <p1:AssemblyReference>Microsoft.CSharp</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Activities</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ComponentModel.DataAnnotations</p1:AssemblyReference>
+        <p1:AssemblyReference>System.IdentityModel</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Activities</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Channels</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.DynamicData</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.Entity</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.ApplicationServices</p1:AssemblyReference>
+        <p1:AssemblyReference>System</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Configuration</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Core</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Data</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Drawing</p1:AssemblyReference>
+        <p1:AssemblyReference>System.EnterpriseServices</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Runtime.Serialization</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Web</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.Extensions</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.Services</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Xaml</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Xml</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Xml.Linq</p1:AssemblyReference>
+        <p1:AssemblyReference>CourseRegistration.BLL</p1:AssemblyReference>
+        <p1:AssemblyReference>CourseRegistration.Models</p1:AssemblyReference>
+        <p1:AssemblyReference>mscorlib</p1:AssemblyReference>
+        <p1:AssemblyReference>CourseRegistration.Service</p1:AssemblyReference>
+      </sco:Collection>
+    </p1:TextExpression.References>
+    <p1:Sequence.Variables>
+      <p1:Variable x:TypeArguments="CorrelationHandle" Name="handle" />
+      <p1:Variable x:TypeArguments="x:String" Name="classId">
+        <p1:Variable.Default>
+          <p1:Literal x:TypeArguments="x:String" Value="" />
+        </p1:Variable.Default>
+      </p1:Variable>
+      <p1:Variable x:TypeArguments="x:Int32" Default="0" Name="regNum" />
+      <p1:Variable x:TypeArguments="cs:Result" Name="result" />
+      <p1:Variable x:TypeArguments="x:Boolean" Default="False" Name="isNeedToAsk" />
+      <p1:Variable x:TypeArguments="CorrelationHandle" Name="classIdHandle" />
+    </p1:Sequence.Variables>
+    <Receive x:Name="__ReferenceID0" CanCreateInstance="True" DisplayName="ReceiveRequest" sap2010:WorkflowViewState.IdRef="Receive_1" OperationName="ConfirmClassId" ServiceContractName="p:IService">
+      <Receive.CorrelationInitializers>
+        <QueryCorrelationInitializer>
+          <QueryCorrelationInitializer.CorrelationHandle>
+            <p1:InArgument x:TypeArguments="CorrelationHandle">
+              <mca:CSharpValue x:TypeArguments="CorrelationHandle">classIdHandle</mca:CSharpValue>
+            </p1:InArgument>
+          </QueryCorrelationInitializer.CorrelationHandle>
+          <XPathMessageQuery x:Key="key1">
+            <XPathMessageQuery.Namespaces>
+              <ssx:XPathMessageContextMarkup>
+                <x:String x:Key="xgSc">http://tempuri.org/</x:String>
+              </ssx:XPathMessageContextMarkup>
+            </XPathMessageQuery.Namespaces>sm:body()/xgSc:ConfirmClassId/xgSc:classId</XPathMessageQuery>
+        </QueryCorrelationInitializer>
+      </Receive.CorrelationInitializers>
+      <ReceiveParametersContent>
+        <p1:OutArgument x:TypeArguments="x:String" x:Key="classId">
+          <mca:CSharpReference x:TypeArguments="x:String">classId</mca:CSharpReference>
+        </p1:OutArgument>
+      </ReceiveParametersContent>
+    </Receive>
+    <cs:GetClassRegistrationNumActivity sap2010:WorkflowViewState.IdRef="GetClassRegistrationNumActivity_1">
+      <cs:GetClassRegistrationNumActivity.classId>
+        <p1:InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String">classId</mca:CSharpValue>
+        </p1:InArgument>
+      </cs:GetClassRegistrationNumActivity.classId>
+      <cs:GetClassRegistrationNumActivity.registrationNum>
+        <p1:OutArgument x:TypeArguments="x:Int32">
+          <mca:CSharpReference x:TypeArguments="x:Int32">regNum</mca:CSharpReference>
+        </p1:OutArgument>
+      </cs:GetClassRegistrationNumActivity.registrationNum>
+    </cs:GetClassRegistrationNumActivity>
+    <p1:If DisplayName="determine by Registration Number of the Class" sap2010:WorkflowViewState.IdRef="If_1">
+      <p1:If.Condition>
+        <p1:InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean">regNum &gt;=5 &amp;&amp; regNum &lt;= 10</mca:CSharpValue>
+        </p1:InArgument>
+      </p1:If.Condition>
+      <p1:If.Then>
+        <p1:Sequence sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <p1:Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+            <p1:Assign.To>
+              <p1:OutArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpReference x:TypeArguments="x:Boolean">isNeedToAsk</mca:CSharpReference>
+              </p1:OutArgument>
+            </p1:Assign.To>
+            <p1:Assign.Value>
+              <p1:InArgument x:TypeArguments="x:Boolean">True</p1:InArgument>
+            </p1:Assign.Value>
+          </p1:Assign>
+        </p1:Sequence>
+      </p1:If.Then>
+      <p1:If.Else>
+        <p1:Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <p1:If sap2010:WorkflowViewState.IdRef="If_2">
+            <p1:If.Condition>
+              <p1:InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">regNum &lt; 5</mca:CSharpValue>
+              </p1:InArgument>
+            </p1:If.Condition>
+            <p1:If.Then>
+              <cs:CancelationActivity sap2010:WorkflowViewState.IdRef="CancelationActivity_5">
+                <cs:CancelationActivity.ClassID>
+                  <p1:InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">classId</mca:CSharpValue>
+                  </p1:InArgument>
+                </cs:CancelationActivity.ClassID>
+              </cs:CancelationActivity>
+            </p1:If.Then>
+            <p1:If.Else>
+              <cs:ConfirmationActivity sap2010:WorkflowViewState.IdRef="ConfirmationActivity_3">
+                <cs:ConfirmationActivity.ClassId>
+                  <p1:InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">classId</mca:CSharpValue>
+                  </p1:InArgument>
+                </cs:ConfirmationActivity.ClassId>
+              </cs:ConfirmationActivity>
+            </p1:If.Else>
+          </p1:If>
+          <p1:Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+            <p1:Assign.To>
+              <p1:OutArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpReference x:TypeArguments="x:Boolean">isNeedToAsk</mca:CSharpReference>
+              </p1:OutArgument>
+            </p1:Assign.To>
+            <p1:Assign.Value>
+              <p1:InArgument x:TypeArguments="x:Boolean">False</p1:InArgument>
+            </p1:Assign.Value>
+          </p1:Assign>
+        </p1:Sequence>
+      </p1:If.Else>
+    </p1:If>
+    <SendReply Request="{x:Reference __ReferenceID0}" DisplayName="SendResponse" sap2010:WorkflowViewState.IdRef="SendReply_1">
+      <SendParametersContent>
+        <p1:InArgument x:TypeArguments="x:String" x:Key="classId">
+          <mca:CSharpValue x:TypeArguments="x:String">classId</mca:CSharpValue>
+        </p1:InArgument>
+        <p1:InArgument x:TypeArguments="x:String" x:Key="reg">
+          <mca:CSharpValue x:TypeArguments="x:String">regNum.ToString()</mca:CSharpValue>
+        </p1:InArgument>
+        <p1:InArgument x:TypeArguments="x:Boolean" x:Key="needToAsk">
+          <mca:CSharpValue x:TypeArguments="x:Boolean">isNeedToAsk</mca:CSharpValue>
+        </p1:InArgument>
+      </SendParametersContent>
+    </SendReply>
+    <p1:If sap2010:WorkflowViewState.IdRef="If_3">
+      <p1:If.Condition>
+        <p1:InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean">isNeedToAsk == true;</mca:CSharpValue>
+        </p1:InArgument>
+      </p1:If.Condition>
+      <p1:If.Then>
+        <p1:Sequence DisplayName="receiveDecision" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <p1:Sequence.Variables>
+            <x:Reference>__ReferenceID2</x:Reference>
+            <p1:Variable x:TypeArguments="x:Int32" Default="2" Name="isDecideToConfirm" />
+          </p1:Sequence.Variables>
+          <Receive x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="Receive_2" OperationName="ReceiveDecision" ServiceContractName="p:IService">
+            <Receive.CorrelatesOn>
+              <XPathMessageQuery x:Key="key1">
+                <XPathMessageQuery.Namespaces>
+                  <ssx:XPathMessageContextMarkup>
+                    <x:String x:Key="xgSc">http://tempuri.org/</x:String>
+                  </ssx:XPathMessageContextMarkup>
+                </XPathMessageQuery.Namespaces>sm:body()/xgSc:ReceiveDecision/xgSc:classId</XPathMessageQuery>
+            </Receive.CorrelatesOn>
+            <Receive.CorrelatesWith>
+              <p1:InArgument x:TypeArguments="CorrelationHandle">
+                <mca:CSharpValue x:TypeArguments="CorrelationHandle">classIdHandle</mca:CSharpValue>
+              </p1:InArgument>
+            </Receive.CorrelatesWith>
+            <Receive.CorrelationInitializers>
+              <RequestReplyCorrelationInitializer>
+                <RequestReplyCorrelationInitializer.CorrelationHandle>
+                  <p1:InArgument x:TypeArguments="CorrelationHandle">
+                    <p1:VariableValue x:TypeArguments="CorrelationHandle">
+                      <p1:VariableValue.Variable>
+                        <p1:Variable x:TypeArguments="CorrelationHandle" x:Name="__ReferenceID2" Name="__handle1" />
+                      </p1:VariableValue.Variable>
+                    </p1:VariableValue>
+                  </p1:InArgument>
+                </RequestReplyCorrelationInitializer.CorrelationHandle>
+              </RequestReplyCorrelationInitializer>
+            </Receive.CorrelationInitializers>
+            <ReceiveParametersContent>
+              <p1:OutArgument x:TypeArguments="x:Int32" x:Key="isConfirm">
+                <mca:CSharpReference x:TypeArguments="x:Int32">isDecideToConfirm</mca:CSharpReference>
+              </p1:OutArgument>
+              <p1:OutArgument x:TypeArguments="x:String" x:Key="classId">
+                <mca:CSharpReference x:TypeArguments="x:String">classId</mca:CSharpReference>
+              </p1:OutArgument>
+            </ReceiveParametersContent>
+          </Receive>
+          <p1:Switch x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+            <p1:Switch.Expression>
+              <p1:InArgument x:TypeArguments="x:Int32">
+                <mca:CSharpValue x:TypeArguments="x:Int32">isDecideToConfirm</mca:CSharpValue>
+              </p1:InArgument>
+            </p1:Switch.Expression>
+            <x:Null x:Key="0" />
+            <cs:ConfirmationActivity x:Key="1" sap2010:WorkflowViewState.IdRef="ConfirmationActivity_6">
+              <cs:ConfirmationActivity.ClassId>
+                <p1:InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">classId</mca:CSharpValue>
+                </p1:InArgument>
+              </cs:ConfirmationActivity.ClassId>
+            </cs:ConfirmationActivity>
+            <cs:CancelationActivity x:Key="2" sap2010:WorkflowViewState.IdRef="CancelationActivity_8">
+              <cs:CancelationActivity.ClassID>
+                <p1:InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">classId</mca:CSharpValue>
+                </p1:InArgument>
+              </cs:CancelationActivity.ClassID>
+            </cs:CancelationActivity>
+          </p1:Switch>
+          <SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendReplyToReceive" sap2010:WorkflowViewState.IdRef="SendReply_2">
+            <SendParametersContent>
+              <p1:InArgument x:TypeArguments="x:Int32" x:Key="result">
+                <mca:CSharpValue x:TypeArguments="x:Int32">isDecideToConfirm</mca:CSharpValue>
+              </p1:InArgument>
+            </SendParametersContent>
+          </SendReply>
+        </p1:Sequence>
+      </p1:If.Then>
+    </p1:If>
+    <sads:DebugSymbol.Symbol>d0dEOlxkb3RORVRfQ0FcQ291cnNlUmVnaXN0cmF0aW9uLlNlcnZpY2VcQ291cnNlQ29uZmlybWF0aW9uUHJvY2Vzcy54YW1seC8PA4cCEQEBQwtDPQEERjZGOQEDSDhIPwECSwVgDwKvAWEFbCoCoAFtBagBDQFsqQEFtQERAVa2AQWFAg0BBVAPUGMCtwFdC11YArABaQtpVgKoAWQLZFACoQFwC3ByAW10CX8XApYBggEJpgEXAXSyAQuyAVUBZa8BC68BWgFerAELrAFQAVe5AQu5AV4BBr0BCYMCFwENdQt+FwKXAYMBC5sBEwF+nAELpQEXAXXAATzAAT8BDsIBC+UBFQE55gEL+wEXARv8AQuCAhcBD3w6fD4CnwF4EXhjApgBhgERhgFdAX+KAQ+QASgCjgGTAQ+ZASkChgGjATqjAT8BfZ8BEZ8BYwF2zQERzQFlAU3fARHfAWcBRNQBFdgBKAFD4gER4gFeATrpARHpAV8BHO0BDfMBJwEv9AEN+gEmASX/ARH/AV8BEI0BFY0BWgKPAZYBFZYBWgKHAfABE/ABWAEw9wET9wFYASY=</sads:DebugSymbol.Symbol>
+  </p1:Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="775,90" />
+      <sap2010:ViewStateData Id="GetClassRegistrationNumActivity_1" sap:VirtualizedContainerService.HintSize="775,22" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="264,186">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CancelationActivity_5" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="ConfirmationActivity_3" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,210" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="464,62" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="486,436">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="775,586" />
+      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="775,90" />
+      <sap2010:ViewStateData Id="Receive_2" sap:VirtualizedContainerService.HintSize="476,90" />
+      <sap2010:ViewStateData Id="ConfirmationActivity_6" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="CancelationActivity_8" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Switch`1_2" sap:VirtualizedContainerService.HintSize="476,184" />
+      <sap2010:ViewStateData Id="SendReply_2" sap:VirtualizedContainerService.HintSize="476,90" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="498,568">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="775,718" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="797,1790">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WorkflowService_1" sap:VirtualizedContainerService.HintSize="828,1992" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</WorkflowService>

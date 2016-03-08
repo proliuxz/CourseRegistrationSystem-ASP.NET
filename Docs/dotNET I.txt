@@ -1,0 +1,38 @@
+0.domain class
+ participant table
+
+
+1.System Architecture
+ 3 layer: DAL-BLL-PRL  
+ 
+
+2.DAL
+ UnitOfWork + Repository
+ UnitOfWork per thread 
+ UnitOfWork per method (X)
+ UnitOfWork per BLL class (X)
+
+3.BLL
+ Singleton - stateless
+ Per domain object
+ Concurrency :hidden for timestamp, cannot depend on EF because update flow, 
+
+
+4.PRL
+ For Public: .net MVC
+ For Admin: Webform
+
+ Controller of MVC and Code behind of Webform, retrieve data from HTML form, assemble into object then call BLL
+
+5.Security
+ integrate build-in security module with domain classes such as User-Participant
+ Extends IdentityDBContext
+
+BusinessRule:
+ 1. no two participant records with same NRIC and Company attribute
+ 2. Same Participant can not register two classes overlap
+ 
+
+
+Assumption:
+do not allow edit for registration or class that is passed

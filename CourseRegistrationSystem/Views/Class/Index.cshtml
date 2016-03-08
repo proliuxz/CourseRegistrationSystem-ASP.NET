@@ -1,0 +1,77 @@
+﻿@model IEnumerable<CourseRegistration.Models.CourseClass>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>Class</li>
+</ul>
+
+<h2>Class List</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Course Type</th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+   <tr>
+        <td>
+            @Html.ActionLink(item.ClassId, "Details", "Class", new { id = item.ClassId }, new { })
+        </td>
+        <td>
+            @Html.ActionLink(item.Course.CourseTitle, "Details", "Course", new { code = item.Course.CourseCode }, new { })
+        </td>
+        <td>
+            @item.StartDate.ToString("yyyy-MM-dd")
+        </td>
+        <td>
+            @item.EndDate.ToString("yyyy-MM-dd")
+        </td>
+        <td>
+            @if (item.isOpenForRegister)
+            {
+                @Html.ActionLink("Register", "RegisterClass", new { classId = item.ClassId });
+            }
+            else
+            {
+                <p class="text-danger">Closed</p>
+            }
+            @*if (Request.IsAuthenticated)
+            {
+                if (User.IsInRole("CompanyHR"))
+                {
+                    @Html.ActionLink("Register", "RegisterClassForHR", new { id = item.ClassId })
+                }
+                else
+                {
+                    @Html.ActionLink("Register", "RegisterClassForIU", new { id = item.ClassId })
+                }
+            }
+            else
+            {
+                @Html.ActionLink("Register", "RegisterClass", new { classId = item.ClassId })
+                
+            }*@
+
+
+
+           
+        </td>
+    </tr>
+    
+}
+
+</table>
+

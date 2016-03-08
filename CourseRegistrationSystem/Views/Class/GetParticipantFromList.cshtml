@@ -1,0 +1,115 @@
+﻿@model List<CourseRegistration.Models.Participant>
+
+@if (Model.Count != 0)
+{
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        @foreach (var p in Model)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading-@p.ParticipantId" data-toggle="collapse" href="#collapse-@p.ParticipantId" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-@p.ParticipantId">
+                    <h4 class="panel-title">
+                        @p.FullName
+                    </h4>
+                </div>
+                <div id="collapse-@p.ParticipantId" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-@p.ParticipantId">
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => p.IdNumber, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => p.IdNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => p.Salutation, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => p.Salutation, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => p.JobTitle, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => p.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => p.Department, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => p.Department, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => p.FullName, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => p.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => p.Gender, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => p.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => p.Nationality, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => p.Nationality, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => p.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => p.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => p.Email, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => p.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => p.ContactNumber, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => p.ContactNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => p.DietaryRequirement, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => p.DietaryRequirement, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => p.SalaryRange, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => p.SalaryRange, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button class="btn btn-default" id="deleteBtn">Delete</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+}

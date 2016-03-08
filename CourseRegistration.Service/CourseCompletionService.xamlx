@@ -1,0 +1,222 @@
+﻿<WorkflowService mc:Ignorable="sap sap2010 sads" p1:TextExpression.Namespaces="{x:Reference __ReferenceID2}" p1:TextExpression.References="{x:Reference __ReferenceID3}" ConfigurationName="CourseCompletionService" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="WorkflowService_1" Name="CourseCompletionService"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:cs="clr-namespace:CourseRegistration.Service;assembly=CourseRegistration.Service"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:p="http://tempuri.org/"
+ xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:ssx="clr-namespace:System.ServiceModel.XamlIntegration;assembly=System.ServiceModel"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p1:Sequence DisplayName="Course Completion Service" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <p1:TextExpression.Namespaces>
+      <sco:Collection x:TypeArguments="x:String" x:Name="__ReferenceID2">
+        <x:String>System</x:String>
+        <x:String>System.Collections.Generic</x:String>
+        <x:String>System.Data</x:String>
+        <x:String>System.Linq</x:String>
+        <x:String>System.Text</x:String>
+        <x:String>System.ServiceModel.Activities</x:String>
+      </sco:Collection>
+    </p1:TextExpression.Namespaces>
+    <p1:TextExpression.References>
+      <sco:Collection x:TypeArguments="p1:AssemblyReference" x:Name="__ReferenceID3">
+        <p1:AssemblyReference>EntityFramework</p1:AssemblyReference>
+        <p1:AssemblyReference>EntityFramework.SqlServer</p1:AssemblyReference>
+        <p1:AssemblyReference>Microsoft.AspNet.Identity.Core</p1:AssemblyReference>
+        <p1:AssemblyReference>Microsoft.AspNet.Identity.EntityFramework</p1:AssemblyReference>
+        <p1:AssemblyReference>Microsoft.CSharp</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Activities</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ComponentModel.DataAnnotations</p1:AssemblyReference>
+        <p1:AssemblyReference>System.IdentityModel</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Activities</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Channels</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.DynamicData</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.Entity</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.ApplicationServices</p1:AssemblyReference>
+        <p1:AssemblyReference>System</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Configuration</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Core</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Data</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Drawing</p1:AssemblyReference>
+        <p1:AssemblyReference>System.EnterpriseServices</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Runtime.Serialization</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Web</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.Extensions</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.Services</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Xaml</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Xml</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Xml.Linq</p1:AssemblyReference>
+        <p1:AssemblyReference>CourseRegistration.BLL</p1:AssemblyReference>
+        <p1:AssemblyReference>CourseRegistration.Models</p1:AssemblyReference>
+        <p1:AssemblyReference>mscorlib</p1:AssemblyReference>
+        <p1:AssemblyReference>CourseRegistration.Service</p1:AssemblyReference>
+      </sco:Collection>
+    </p1:TextExpression.References>
+    <p1:Sequence.Variables>
+      <p1:Variable x:TypeArguments="CorrelationHandle" Name="handle" />
+      <p1:Variable x:TypeArguments="x:String" Name="classId" />
+      <p1:Variable x:TypeArguments="scg:List(cs:SvcStudent)" Name="obligationFulfillList" />
+      <p1:Variable x:TypeArguments="scg:List(cs:SvcStudent)" Name="obligationViolateList" />
+      <p1:Variable x:TypeArguments="CorrelationHandle" Name="classIdHandle" />
+      <p1:Variable x:TypeArguments="scg:List(cs:SvcStudent)" Name="filteredList" />
+    </p1:Sequence.Variables>
+    <Receive x:Name="__ReferenceID0" CanCreateInstance="True" DisplayName="ReceiveRequest" sap2010:WorkflowViewState.IdRef="Receive_1" OperationName="GetSubsidyEligibleStudList" ServiceContractName="p:IService">
+      <Receive.CorrelationInitializers>
+        <RequestReplyCorrelationInitializer>
+          <RequestReplyCorrelationInitializer.CorrelationHandle>
+            <p1:InArgument x:TypeArguments="CorrelationHandle">
+              <mca:CSharpValue x:TypeArguments="CorrelationHandle">handle</mca:CSharpValue>
+            </p1:InArgument>
+          </RequestReplyCorrelationInitializer.CorrelationHandle>
+        </RequestReplyCorrelationInitializer>
+        <QueryCorrelationInitializer>
+          <QueryCorrelationInitializer.CorrelationHandle>
+            <p1:InArgument x:TypeArguments="CorrelationHandle">
+              <mca:CSharpValue x:TypeArguments="CorrelationHandle">classIdHandle</mca:CSharpValue>
+            </p1:InArgument>
+          </QueryCorrelationInitializer.CorrelationHandle>
+          <XPathMessageQuery x:Key="key1">
+            <XPathMessageQuery.Namespaces>
+              <ssx:XPathMessageContextMarkup>
+                <x:String x:Key="xgSc">http://tempuri.org/</x:String>
+              </ssx:XPathMessageContextMarkup>
+            </XPathMessageQuery.Namespaces>sm:body()/xgSc:GetSubsidyEligibleStudList/xgSc:classID</XPathMessageQuery>
+        </QueryCorrelationInitializer>
+      </Receive.CorrelationInitializers>
+      <ReceiveParametersContent>
+        <p1:OutArgument x:TypeArguments="x:String" x:Key="classID">
+          <mca:CSharpReference x:TypeArguments="x:String">classId</mca:CSharpReference>
+        </p1:OutArgument>
+      </ReceiveParametersContent>
+    </Receive>
+    <cs:GetSubsidizedParticipantListByGoodAttendanceActivity sap2010:WorkflowViewState.IdRef="GetSubsidizedParticipantListByGoodAttendanceActivity_1">
+      <cs:GetSubsidizedParticipantListByGoodAttendanceActivity.classId>
+        <p1:InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String">classId</mca:CSharpValue>
+        </p1:InArgument>
+      </cs:GetSubsidizedParticipantListByGoodAttendanceActivity.classId>
+      <cs:GetSubsidizedParticipantListByGoodAttendanceActivity.obligationFulfillList>
+        <p1:OutArgument x:TypeArguments="scg:List(cs:SvcStudent)">
+          <mca:CSharpReference x:TypeArguments="scg:List(cs:SvcStudent)">obligationFulfillList</mca:CSharpReference>
+        </p1:OutArgument>
+      </cs:GetSubsidizedParticipantListByGoodAttendanceActivity.obligationFulfillList>
+      <cs:GetSubsidizedParticipantListByGoodAttendanceActivity.obligationViolateList>
+        <p1:OutArgument x:TypeArguments="scg:List(cs:SvcStudent)">
+          <mca:CSharpReference x:TypeArguments="scg:List(cs:SvcStudent)">obligationViolateList</mca:CSharpReference>
+        </p1:OutArgument>
+      </cs:GetSubsidizedParticipantListByGoodAttendanceActivity.obligationViolateList>
+    </cs:GetSubsidizedParticipantListByGoodAttendanceActivity>
+    <SendReply Request="{x:Reference __ReferenceID0}" DisplayName="SendResponse" sap2010:WorkflowViewState.IdRef="SendReply_1">
+      <SendMessageContent DeclaredMessageType="scg:List(cs:SvcStudent)">
+        <p1:InArgument x:TypeArguments="scg:List(cs:SvcStudent)">
+          <mca:CSharpValue x:TypeArguments="scg:List(cs:SvcStudent)">obligationFulfillList</mca:CSharpValue>
+        </p1:InArgument>
+      </SendMessageContent>
+    </SendReply>
+    <p1:Sequence DisplayName="SendReportSequence" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <p1:Sequence.Variables>
+        <p1:Variable x:TypeArguments="x:Boolean" Default="False" Name="status" />
+      </p1:Sequence.Variables>
+      <Receive x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="Receive_2" OperationName="GetObligationReport" ServiceContractName="p:IService">
+        <Receive.CorrelatesOn>
+          <XPathMessageQuery x:Key="key1">
+            <XPathMessageQuery.Namespaces>
+              <ssx:XPathMessageContextMarkup>
+                <x:String x:Key="xgSc">http://tempuri.org/</x:String>
+              </ssx:XPathMessageContextMarkup>
+            </XPathMessageQuery.Namespaces>sm:body()/xgSc:GetObligationReport/xgSc:classID</XPathMessageQuery>
+        </Receive.CorrelatesOn>
+        <Receive.CorrelatesWith>
+          <p1:InArgument x:TypeArguments="CorrelationHandle">
+            <mca:CSharpValue x:TypeArguments="CorrelationHandle">classIdHandle</mca:CSharpValue>
+          </p1:InArgument>
+        </Receive.CorrelatesWith>
+        <Receive.CorrelationInitializers>
+          <RequestReplyCorrelationInitializer>
+            <RequestReplyCorrelationInitializer.CorrelationHandle>
+              <p1:InArgument x:TypeArguments="CorrelationHandle">
+                <mca:CSharpValue x:TypeArguments="CorrelationHandle">handle</mca:CSharpValue>
+              </p1:InArgument>
+            </RequestReplyCorrelationInitializer.CorrelationHandle>
+          </RequestReplyCorrelationInitializer>
+        </Receive.CorrelationInitializers>
+        <ReceiveParametersContent>
+          <p1:OutArgument x:TypeArguments="scg:List(cs:SvcStudent)" x:Key="filteredList">
+            <mca:CSharpReference x:TypeArguments="scg:List(cs:SvcStudent)">filteredList</mca:CSharpReference>
+          </p1:OutArgument>
+          <p1:OutArgument x:TypeArguments="x:String" x:Key="classID">
+            <mca:CSharpReference x:TypeArguments="x:String">classId</mca:CSharpReference>
+          </p1:OutArgument>
+        </ReceiveParametersContent>
+      </Receive>
+      <cs:SendObligationReportToCourseAdminActivity sap2010:WorkflowViewState.IdRef="SendObligationReportToCourseAdminActivity_1">
+        <cs:SendObligationReportToCourseAdminActivity.filteredList>
+          <p1:InArgument x:TypeArguments="scg:List(cs:SvcStudent)">
+            <mca:CSharpValue x:TypeArguments="scg:List(cs:SvcStudent)">filteredList</mca:CSharpValue>
+          </p1:InArgument>
+        </cs:SendObligationReportToCourseAdminActivity.filteredList>
+        <cs:SendObligationReportToCourseAdminActivity.obligationFulfillList>
+          <p1:InArgument x:TypeArguments="scg:List(cs:SvcStudent)">
+            <mca:CSharpValue x:TypeArguments="scg:List(cs:SvcStudent)">obligationFulfillList</mca:CSharpValue>
+          </p1:InArgument>
+        </cs:SendObligationReportToCourseAdminActivity.obligationFulfillList>
+        <cs:SendObligationReportToCourseAdminActivity.obligationViolateList>
+          <p1:InArgument x:TypeArguments="scg:List(cs:SvcStudent)">
+            <mca:CSharpValue x:TypeArguments="scg:List(cs:SvcStudent)">obligationViolateList</mca:CSharpValue>
+          </p1:InArgument>
+        </cs:SendObligationReportToCourseAdminActivity.obligationViolateList>
+        <cs:SendObligationReportToCourseAdminActivity.status>
+          <p1:OutArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpReference x:TypeArguments="x:Boolean">status</mca:CSharpReference>
+          </p1:OutArgument>
+        </cs:SendObligationReportToCourseAdminActivity.status>
+      </cs:SendObligationReportToCourseAdminActivity>
+      <SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendReplyToReceive" sap2010:WorkflowViewState.IdRef="SendReply_2">
+        <SendParametersContent>
+          <p1:InArgument x:TypeArguments="scg:List(cs:SvcStudent)" x:Key="obligationFulfillList">
+            <mca:CSharpValue x:TypeArguments="scg:List(cs:SvcStudent)">filteredList</mca:CSharpValue>
+          </p1:InArgument>
+          <p1:InArgument x:TypeArguments="scg:List(cs:SvcStudent)" x:Key="obligationViolateList">
+            <mca:CSharpValue x:TypeArguments="scg:List(cs:SvcStudent)">obligationViolateList</mca:CSharpValue>
+          </p1:InArgument>
+          <p1:InArgument x:TypeArguments="x:Boolean" x:Key="status">
+            <mca:CSharpValue x:TypeArguments="x:Boolean">status</mca:CSharpValue>
+          </p1:InArgument>
+        </SendParametersContent>
+      </SendReply>
+    </p1:Sequence>
+    <sads:DebugSymbol.Symbol>d2FEOlxWaXN1YWwgU3R1ZGlvIDIwMTNcUHJvamVjdHNcZG90TkVUX0NBXENvdXJzZVJlZ2lzdHJhdGlvbi5TZXJ2aWNlXENvdXJzZUNvbXBsZXRpb25TZXJ2aWNlLnhhbWx4Gw8DxAERAQFGBWIPApsBYwVzPwKFAXQFehEBb3sFwgETAQJfC19YAqoBSw9LXAKjAVIPUmMCnAFwC3B1ApQBZgtmUAKNAWsLa3UChgF3C3dtAXB9On1BAQN/B54BEQFOnwEHtAE2AS21AQfBARMBBIoBDYoBYQFnmAENmAFuAV+bAQ2bAVoBV5EBEZEBXgFPogENogFmAUaxAQ2xAVoBPqwBDawBbwE2pwENpwFvAS6+AQ2+AVIBFbsBDbsBbwENuAENuAFmAQU=</sads:DebugSymbol.Symbol>
+  </p1:Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="277,90" />
+      <sap2010:ViewStateData Id="GetSubsidizedParticipantListByGoodAttendanceActivity_1" sap:VirtualizedContainerService.HintSize="277,22" />
+      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="277,90" />
+      <sap2010:ViewStateData Id="Receive_2" sap:VirtualizedContainerService.HintSize="255,90" />
+      <sap2010:ViewStateData Id="SendObligationReportToCourseAdminActivity_1" sap:VirtualizedContainerService.HintSize="255,22" />
+      <sap2010:ViewStateData Id="SendReply_2" sap:VirtualizedContainerService.HintSize="255,90" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="277,406">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="299,852">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WorkflowService_1" sap:VirtualizedContainerService.HintSize="329,922" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</WorkflowService>

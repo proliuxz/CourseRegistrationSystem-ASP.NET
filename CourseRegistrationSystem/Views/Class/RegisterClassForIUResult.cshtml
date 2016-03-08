@@ -1,0 +1,138 @@
+﻿@model CourseRegistration.Models.Registration
+
+@{
+    ViewBag.Title = "RegisterClassForIUResult";
+}
+
+<h2>Register For @Html.Encode(Model.CourseClass.Course.CourseTitle) &amp; @Html.Encode(Model.CourseClass.ClassId) successfully!</h2>
+<h4>Thanks for your registration!</h4>
+<hr />
+<div>
+    <h4>Your Participant Details</h4>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.IdNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.IdNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.Salutation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.Salutation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.EmploymentStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.EmploymentStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.Department)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.Department)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.Nationality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.Nationality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.ContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.ContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DietaryRequirement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DietaryRequirement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrganizationSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrganizationSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.SalaryRange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.SalaryRange)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

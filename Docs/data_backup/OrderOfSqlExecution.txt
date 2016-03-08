@@ -1,0 +1,6 @@
+AspNetRoles
+Categories
+Instructors
+Courses
+CourseClasses
+Registrations

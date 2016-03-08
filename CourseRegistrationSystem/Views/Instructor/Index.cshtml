@@ -1,0 +1,20 @@
+﻿@model IEnumerable<CourseRegistration.Models.Instructor>
+@using CourseRegistration.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>Instructor</li>
+</ul>
+
+<h2>Instructor List</h2>
+
+<ul>
+    @foreach (Instructor item in Model)
+    {
+        <li>@Html.ActionLink(item.InstructorName, "Details", "Instructor", new { id = item.InstructorId }, new { })</li>
+    }
+</ul>

@@ -1,0 +1,26 @@
+1.refine system architecture
+2.refine domain class diagram
+3.refine usecase
+
+4.for WCF part
+	implement WCF(with justification of binding type etc.)
+		1.Course Registration Web Service
+		2.Attendance System
+			get student list
+			submit attendance
+		
+	implement Client Application 1 day
+5.for WWF part
+	implement Course Confirmation Process
+	implement Course Completion Process
+	implement Webform pages to call those WWF(CourseAdmin-ClassManagement ; Instructor-Assessment)
+
+
+
+
+Certificate
+1. Run host as administrator
+2. C:\Program Files (x86)\Windows Kits\8.1\bin\x64
+3. makecert.exe -sr LocalMachine -ss My -a sha1 -n CN=localhost -sky exchange -pe
+4. using mmc.exe copy the certificate to trusted person
+5. update client's service reference

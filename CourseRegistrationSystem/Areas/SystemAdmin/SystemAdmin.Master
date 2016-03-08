@@ -1,0 +1,84 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SystemAdmin.master.cs" Inherits="CourseRegistrationSystem.Areas.SystemAdmin.SystemAdmin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>System Admin Master</title>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style3 {
+            width: 196px;
+        }
+        .auto-style4 {
+            width: 40px;
+        }
+        .auto-style5 {
+            width: 349px;
+        }
+    </style>
+</head>
+<body>
+   <form id="form1" runat="server" method="post">
+
+    <div>
+        <asp:Panel ID ="Title" runat="server" Font-Size="X-Large" Font-Name="Verdana">
+        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/logo128.png" OnClick="ImageButton1_Click" />
+        <asp:ContentPlaceHolder ID="subTitle" runat="server">        
+        Title
+        </asp:ContentPlaceHolder>
+        </asp:Panel>
+    </div>
+
+    <div>
+        <asp:Panel ID="Panel2" runat="server" HorizontalAlign="Right">
+        <asp:Label ID="SayHello" runat="server" Text="Hello~" Font-Size="Large"></asp:Label>
+        <asp:Button ID ="LogOff" runat="server" Text ="Log Off" OnClick="LogOff_Click" Font-Size="Large" Height="27px"></asp:Button>
+        </asp:Panel>
+        
+    </div>
+
+    <div>
+        <asp:ContentPlaceHolder ID="Path" runat="server">
+        <asp:Panel ID="Panel6" runat="server" HorizontalAlign="Left" >
+          <asp:SiteMapPath ID="SiteMapPath1" runat="server"></asp:SiteMapPath>
+        </asp:Panel>
+        </asp:ContentPlaceHolder>
+    </div>
+        
+    
+        
+    <asp:Table ID="Table1" runat="server" CellPadding="2" CellSpacing="2" Width="100%" Height="750px" HorizontalAlign="Left" CaptionAlign="Top">
+        <asp:TableRow Width="100%">
+            <asp:TableCell VerticalAlign="Top" HorizontalAlign="Left" BorderStyle="Double" Width="25%">
+                <asp:ContentPlaceHolder ID="Menu" runat="server">
+                    <asp:Menu ID="Menu1" runat="server" BackColor="#B5C7DE" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="X-Large" ForeColor="#284E98" StaticSubMenuIndent="10px">
+                    <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
+                    <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                    <DynamicMenuStyle BackColor="#B5C7DE" />
+                    <DynamicSelectedStyle BackColor="#507CD1" />
+                    <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
+                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                    <StaticSelectedStyle BackColor="#507CD1" />
+                    <Items>
+                        <asp:MenuItem Text="User Management" Value="Course Management" NavigateUrl="~/Areas/SystemAdmin/UserManagement.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Role Management" Value="Class Management" NavigateUrl="~/Areas/SystemAdmin/RoleManagement.aspx"></asp:MenuItem>
+                    </Items>
+                </asp:Menu>
+                </asp:ContentPlaceHolder>
+            </asp:TableCell>
+            <asp:TableCell HorizontalAlign="Left" VerticalAlign="Top" BorderStyle="Double" Width="75%">
+                <asp:ContentPlaceHolder ID="Search" runat="server">
+                </asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                
+                </asp:ContentPlaceHolder>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
+
+</form>
+</body>
+</html>

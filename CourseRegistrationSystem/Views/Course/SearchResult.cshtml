@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CourseRegistration.Models.Course>
+
+@{
+    ViewBag.Title = "SearchResult";
+}
+
+<h2>Search <i><small>@Model.Count() results about "@ViewBag.Search"</small></i></h2>
+
+@if (Model.Count() == 0)
+{
+    <hr />
+    <p><i>Sorry, there is no any courses referred to "@ViewBag.Search".</i></p>
+}
+
+@foreach (var item in Model)
+{
+    //if (item.enabled)
+    //{
+    <hr />
+    <h4>@Html.ActionLink(item.CourseTitle, "Details", "Course", new { code = item.CourseCode }, new { })</h4>
+    <p>
+        @if (item.CourseDescription == null || item.CourseDescription == "")
+        {
+            @Html.Display("The description of this course is nothing now.")
+        }
+        else
+        {
+            @Html.DisplayFor(modelItem => item.CourseDescription)
+        }
+    </p>
+    <p><strong>Fee: @Html.DisplayFor(modelItem => item.Fee) | Duration: @Html.DisplayFor(modelItem => item.NumberOfDays)</strong></p>
+    
+    //}
+}
+

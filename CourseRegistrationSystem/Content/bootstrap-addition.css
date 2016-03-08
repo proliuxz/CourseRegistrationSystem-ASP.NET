@@ -1,0 +1,102 @@
+﻿.dropdown:hover .dropdown-menu{
+    display:block;
+}
+
+.dropdown-sub{
+    position:relative;
+}
+
+.dropdown-submenu{
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0px;
+    margin: 2px 0px 0px;
+    font-size: 14px;
+    list-style: outside none none;
+    background-color: #FFF;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    /*border-radius: 4px;*/
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
+    background-clip: padding-box;
+}
+
+.dropdown-sub > a:after {
+    content: "";
+    float: right;
+    margin-right: -10px;
+}
+
+@media (max-width:768px){
+    .dropdown-sub .dropdown-submenu{
+        position: static;
+        margin-top: 0;
+        border: 0;
+        box-shadow: none;
+    }
+}
+
+
+@media (min-width: 768px){
+    .dropdown-sub>a:after {
+        margin-top: 6px; 
+        border-left: 4px dashed;
+        border-top: 4px solid transparent; 
+        border-bottom: 4px solid transparent;
+    }
+    .dropdown-submenu{
+        border-top-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        position: absolute;
+        top: -3px;
+        left: 100%;
+        z-index: 1000;
+        display: none;
+        float: left;
+        min-width: 160px;
+        padding: 5px 0px;
+        margin: 2px 0px 0px;
+        font-size: 14px;
+        list-style: outside none none;
+        background-color: #FFF;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        /*border-radius: 4px;*/
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
+        background-clip: padding-box;
+    }
+}
+
+.dropdown-submenu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857;
+    color: #333;
+    white-space: nowrap;
+}
+
+.dropdown-submenu > li > a:hover, .dropdown-menu > li > a:focus {
+    color: #FFF;
+    text-decoration: none;
+    background-color: #428BCA;
+}
+
+.dropdown-sub:hover .dropdown-submenu{
+    display:block;
+}
+
+.navbar-top{
+    right: 0px;
+    left: 0px;
+    border-width: 0px 0px 1px;
+}
+

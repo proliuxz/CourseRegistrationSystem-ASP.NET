@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CourseRegistration.Models.Category>
+@using CourseRegistration.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row" style="margin:auto;">
+    <div class="col-sm-3 col-md-2 col-lg-2 sidebar" style="position:absolute;top: auto;left:auto;overflow-y:hidden;bottom:auto;max-width:225px;">
+        <ul class="nav nav-sidebar">
+            <li class="active"><a>Category</a></li>
+            <li>@Html.ActionLink("Introduction","Index","Course")</li>
+            @foreach (var item in Model)
+            {
+                <li>
+                    @Ajax.ActionLink(item.CategoryName, "CourseList", "Course", new { categoryId = item.CategoryId },
+                 new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "courselist" })
+                </li>
+            }
+
+        </ul>
+        @*<hr style="border-color:#428bca;" />*@
+        @*<ul class="nav nav-sidebar">
+            <li class="active"><a>Upcoming Class</a></li>
+            @foreach (CourseClass item in ViewBag.cList)
+            {
+                <li>@Html.ActionLink(item.ClassId, "Details", "Class", new { id=item.ClassId}, new { })</li>
+            }
+        </ul>*@
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2 main">
+        <div id="courselist">
+            <ul class="breadcrumb">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li class="active">Courses</li>
+            </ul>
+            <h2>Courses</h2>
+            <div style="padding-left:15px;padding-right:15px;">
+                <p>
+                    ISS conducts executive education programmes which impart skills and knowledge to manage, plan and implement infocomm and digital businesses. For the busy professional who want to keep abreast of technological and stay relevant in the competitive business landscape, ISS offers a suite of high quality, blended learning courses that are pedagogically sound and mentored by ISS lecturers. The executive education programmes at ISS are delivered by our team of industry professionals with successful track records and an average of more than 20 years of industry experience.
+                </p>
+                <p>
+                    To date, over 91,000 infocomm professionals, 5,100 corporate customers and 4,400 post-graduate alumni members have benefitted from ISS’s suite of services.
+                </p>
+            </div>
+            <h2>Our courses are categorised into the following :</h2>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CategoryName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Courses)
+                    </th>
+                </tr>
+
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        <td>
+                            @Ajax.ActionLink(i.CategoryName, "CourseList", "Course", new { categoryId = i.CategoryId },
+                 new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "courselist" })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => i.Courses.Count)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Register";
+    ViewBag.IndividualUser = CourseRegistration.BLL.Util.C_Role_IndividualUser;
+    ViewBag.CompanyHR = CourseRegistration.BLL.Util.C_Role_CompanyHR;
+}
+
+<h2>@ViewBag.Title.</h2>
+   
+    <div class="form-horizontal">
+        <h4>Create a New Account</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Register As", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="radio-inline">
+                    @Html.RadioButton("registerAs", (string)@ViewBag.IndividualUser,true, new { id = @ViewBag.IndividualUser, onclick = "showRegisterResult(this)" }) @ViewBag.IndividualUser
+                </div>
+                <div class="radio-inline">
+                    @Html.RadioButton("registerAs", (string)@ViewBag.CompanyHR, new { id = @ViewBag.CompanyHR, onclick = "showRegisterResult(this)" }) @ViewBag.CompanyHR
+                </div>
+                @Html.ValidationMessage("registerAs", new { htmlAttributes = new { @class = "text-danger" } })
+            </div>
+        </div>
+        <div class="form-group" id="RegisterPage">
+            @Html.Partial("RegisterIndividualUser");
+        </div>
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    function showRegisterResult(radio) {
+        var selected = radio.value;
+        var individualUser = '@ViewBag.IndividualUser';
+        var companyHR = '@ViewBag.CompanyHR';
+        if (selected == individualUser) {
+            //$("#RegisterPage").load("/Account/RegisterIndividualUser");
+            $url = "/Account/RegisterIndividualUser";
+        }
+        else if (selected == companyHR) {
+            // $("#RegisterPage").load("/Account/RegisterCompanyHR");
+            $url = "/Account/RegisterCompanyHR";
+        }
+
+        $.ajax({
+            url: $url,
+            dataType: 'html',
+            success: function (data) {
+                $('#RegisterPage').html(data);
+                if (!Modernizr.inputtypes.date) {
+                    $(".datecontrol").datepicker();
+                }
+                $('form').removeData('validator');
+                $('form').removeData('unobtrusiveValidation');
+                $.validator.unobtrusive.parse('form');
+            }
+        });
+    }
+</script>
+}

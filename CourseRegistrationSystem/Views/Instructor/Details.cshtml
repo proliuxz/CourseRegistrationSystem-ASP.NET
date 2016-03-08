@@ -1,0 +1,31 @@
+﻿@model CourseRegistration.Models.Instructor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Instructor", "Index", "Instructor")</li>
+    <li>@Html.DisplayFor(model => Model.InstructorName)</li>
+</ul>
+
+<h2>Instructor</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.InstructorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstructorName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

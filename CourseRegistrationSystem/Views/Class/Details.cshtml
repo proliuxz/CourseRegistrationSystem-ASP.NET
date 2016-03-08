@@ -1,0 +1,51 @@
+﻿@model CourseRegistration.Models.CourseClass
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Class", "Index", "Class")</li>
+    <li>@Html.DisplayFor(model => Model.ClassId)</li>
+</ul>
+
+<h2>@Model.ClassId Class <small>@Model.Course.CourseTitle</small></h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+    @if (Model.isOpenForRegister)
+    {
+        
+        @Html.ActionLink("Register", "RegisterClass", new { classId = Model.ClassId }, new { @style="float:right"})
+        
+    }
+    else
+    {
+        <span class="text-right">Coming soon for register</span>
+    }
+</p>

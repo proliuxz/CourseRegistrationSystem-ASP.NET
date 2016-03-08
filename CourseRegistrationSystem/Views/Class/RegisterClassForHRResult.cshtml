@@ -1,0 +1,98 @@
+﻿@model IEnumerable<CourseRegistration.Models.Registration>
+@using CourseRegistration.Models;
+
+@{
+    ViewBag.Title = "RegisterClassForHRResult";
+}
+
+<h2>RegisterClassForHRResult</h2>
+<hr />
+<div>
+    <h4>Successful registration</h4>
+
+    @foreach (var item in Model)
+    {
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("FullName")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Participant.FullName)
+            </dd>
+
+        </dl>
+
+    }
+</div>
+
+<dl class="dl-horizontal">
+
+    <dt>
+        @Html.DisplayName("Address")
+    </dt>
+
+    <dd>
+        @Html.Encode(ViewBag.Address)
+    </dd>
+
+    <dt>
+        @Html.DisplayName("PersonName")
+    </dt>
+
+    <dd>
+        @Html.Encode(ViewBag.PersonName)
+    </dd>
+
+    <dt>
+        @Html.DisplayName("Country")
+    </dt>
+
+    <dd>
+        @Html.Encode(ViewBag.Country)
+    </dd>
+
+    <dt>
+        @Html.DisplayName("PostalCode")
+    </dt>
+
+    <dd>
+        @Html.Encode(ViewBag.PostalCode)
+    </dd>
+
+    <dt>
+        @Html.DisplayName("Status")
+    </dt>
+
+    <dd>
+        @Html.Display("Pending")
+    </dd> 
+</dl>
+
+@if (ViewBag.fList.Count != 0)
+{
+    <div class="alert alert-danger" role="alert">
+        <h4>There are participants who failed registration or already had registered. If any mistake, please try again for them or contact us directly.</h4>
+        <hr />
+        @foreach (Registration item in ViewBag.fList)
+        {
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("FullName")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => item.Participant.FullName)
+                </dd>
+
+            </dl>
+
+        }
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
